@@ -31,13 +31,14 @@ sub erweiterter_euklid {
 my $p = shift;
 my $q = shift;
 my $e = shift;
+my $m = shift;
 
-if (!defined($p) || !defined($q) || !defined($e)) {
-    say "Syntax: a24b.pl p q e";
+if (!defined($p) || !defined($q) || !defined($e) || !defined($m)) {
+    say "Syntax: a24c.pl p q e m";
     exit 1;
 }
 
-say "p = $p, q = $q, e = $e";
+say "p = $p, q = $q, e = $e, m = $m";
 
 # Bedingungen:
 # p != q
@@ -69,8 +70,9 @@ my $phi = ($p - 1) * ($q - 1);
 say "φ(N) = $phi";
 say "e = $e";
 
-my (undef, $d, undef) = @{erweiterter_euklid($e, $phi)};
-$d += $phi if ($d < 0);
-say "d = $d";
-
-
+my $c = 1;
+while ($e > 0) {
+    $c = ($c * $m) % $n;
+    $e--;
+}
+say "c = $c";
